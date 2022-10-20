@@ -23,7 +23,9 @@
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",
-		"symfony/thanks": "^1"
+		"symfony/thanks": "^1",
+		"phpstan/phpstan-nette": "^1.1",
+		"phpstan/extension-installer": "^1.2"
 	},
 	"autoload": {
 		"psr-4": {
@@ -33,7 +35,18 @@
 	"minimum-stability": "stable",
 	"config": {
 		"allow-plugins": {
-			"symfony/thanks": true
+			"symfony/thanks": true,
+			"phpstan/extension-installer": true
 		}
+	},
+	"extra": {
+		"phpstan": {
+			"includes": [
+				"extension.neon"
+			]
+		}
+	},
+	"scripts": {
+		"phpstan": "vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=-1"
 	}
 }
