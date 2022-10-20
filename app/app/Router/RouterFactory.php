@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Router;
 
-use Nette;
 use Nette\Application\Routers\RouteList;
 
 
@@ -12,25 +11,26 @@ final class RouterFactory
 {
 	public static function createRouter(): RouteList
 	{
-        $router = new RouteList;
-        /**
-         * Admin
-         */
-        $router->addRoute('admin/<presenter>/<action>[/<id>]', [
-            'presenter' => 'Homepage',
-            'action' => 'default',
-            'module' => 'Admin',
-        ]);
+		$router = new RouteList;
 
-        /**
-         * Front
-         */
-        $router->addRoute('/<presenter>/<action>[/<id>]', [
-            'presenter' => 'Homepage',
-            'action' => 'default',
-            'module' => 'Front',
-        ]);
+		/**
+		 * Admin
+		 */
+		$router->addRoute('admin/<presenter>/<action>[/<id>]', [
+			'presenter' => 'Homepage',
+			'action' => 'default',
+			'module' => 'Admin',
+		]);
 
-        return $router;
+		/**
+		 * Front
+		 */
+		$router->addRoute('/<presenter>/<action>[/<id>]', [
+			'presenter' => 'Homepage',
+			'action' => 'default',
+			'module' => 'Front',
+		]);
+
+		return $router;
 	}
 }
