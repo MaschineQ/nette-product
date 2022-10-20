@@ -14,9 +14,9 @@ class Bootstrap
 		$configurator = new Configurator;
 		$appDir = dirname(__DIR__);
 
-        if (file_exists(__DIR__ . '/../config/local.neon')) {
-            $configurator->setDebugMode(TRUE);
-        }
+		if (file_exists(__DIR__ . '/../config/local.neon')) {
+			$configurator->setDebugMode(true);
+		}
 		$configurator->enableTracy($appDir . '/log');
 
 		$configurator->setTimeZone('Europe/Prague');
