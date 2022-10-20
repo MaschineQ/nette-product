@@ -2,12 +2,14 @@ parameters:
 
 
 database:
-	dsn: 'mysql:host=127.0.0.1;dbname=product'
+	dsn: 'mysql:host=mysql;dbname=product'
 	user: product
 	password: product
 
 services:
-
+    # Admin
+    - App\AdminModule\Form\ProductFormFactory
+    - App\AdminModule\Model\ProductManager
 
 application:
         mapping:
