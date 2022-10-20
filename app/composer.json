@@ -19,7 +19,8 @@
 		"nette/security": "^3.1",
 		"nette/utils": "^3.2",
 		"latte/latte": "^2.9",
-		"tracy/tracy": "^2.8"
+		"tracy/tracy": "^2.8",
+		"nette/coding-standard": "^3.3"
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",
@@ -36,7 +37,8 @@
 	"config": {
 		"allow-plugins": {
 			"symfony/thanks": true,
-			"phpstan/extension-installer": true
+			"phpstan/extension-installer": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
 	"extra": {
@@ -47,6 +49,8 @@
 		}
 	},
 	"scripts": {
-		"phpstan": "vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=-1"
+		"phpstan": "vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=-1",
+		"ecs": "vendor/nette/coding-standard/ecs check app",
+		"ecs-fix": "vendor/nette/coding-standard/ecs fix app"
 	}
 }
