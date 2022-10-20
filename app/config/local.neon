@@ -1,0 +1,17 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=product'
+	user: product
+	password: product
+
+services:
+
+
+application:
+        mapping:
+            Front: App\FrontModule\Presenters\*Presenter
+            Admin: App\AdminModule\Presenters\*Presenter
+            Error: App\Presenters\*Presenter
+            *: App\*Module\Presenters\*Presenter
