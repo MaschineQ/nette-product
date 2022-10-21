@@ -1,2 +1,8 @@
 services:
+	# Router
 	- App\Router\RouterFactory::createRouter
+
+	# Admin
+	- App\AdminModule\Form\FormFactory
+	- App\AdminModule\Form\ProductFormFactory
+	- App\AdminModule\Model\ProductManager

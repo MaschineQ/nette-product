@@ -6,11 +6,6 @@ database:
 	user: product
 	password: product
 
-services:
-    # Admin
-    - App\AdminModule\Form\ProductFormFactory
-    - App\AdminModule\Model\ProductManager
-
 application:
         mapping:
             Front: App\FrontModule\Presenters\*Presenter
