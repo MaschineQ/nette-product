@@ -10,9 +10,15 @@ use Nette\Utils\ArrayHash;
 
 class ProductFormFactory
 {
+	public function __construct(
+		private FormFactory $formFactory,
+	) {
+	}
+
+
 	public function create(): Form
 	{
-		$form = new Form();
+		$form = $this->formFactory->create();
 
 		$form->addText('name', 'Name')
 			->setRequired();
