@@ -7,10 +7,12 @@ namespace App\AdminModule\Presenters;
 use App\AdminModule\Form\ProductFormFactory;
 use App\AdminModule\Model\ProductManager;
 use Nette\Application\UI\Form;
+use Nette\Utils\Json;
 
-class ProductPresenter extends BasePresenter
+final class ProductPresenter extends BasePresenter
 {
 	public function __construct(
+		private ?int $productId,
 		private ProductFormFactory $productFormFactory,
 		private ProductManager $productManager,
 	) {
@@ -26,9 +28,9 @@ class ProductPresenter extends BasePresenter
 
 	protected function createComponentProductForm(): Form
 	{
-		$form = $this->productFormFactory->create();
+		$form = $this->productFormFactory->create($this->productId);
 		$form->onSuccess[] = function (Form $form) {
-			$this->flashMessage('Příspěvek byl úspěšně publikován..', 'success');
+			$this->flashMessage('The product has been saved.', 'success');
 			$this->redirect('default');
 		};
 
@@ -38,11 +40,30 @@ class ProductPresenter extends BasePresenter
 
 	public function actionEdit(int $id): void
 	{
+		$this->productId = $id;
+		$product = $this->productManager->getProduct($id);
+
+		if (!$product) {
+			$this->error('Product not found');
+		}
+
+		/** @var string $tag */
+		$tag = $product->tag;
+
+		$this['productForm']->setDefaults([
+			'name' => $product->name,
+			'price' => $product->price,
+			'category' => $product->category,
+			'tag' => Json::decode($tag),
+			'active' => $product->active,
+		]);
 	}
 
 
-	public function actionAdd(): void
+	public function actionDelete(int $id): void
 	{
-
+		$this->productManager->deleteProduct($id);
+		$this->flashMessage('The product has been deleted.', 'success');
+		$this->redirect('default');
 	}
 }

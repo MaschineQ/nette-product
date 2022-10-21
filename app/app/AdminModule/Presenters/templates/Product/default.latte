@@ -1,6 +1,26 @@
 {block content}
-    <div n:foreach="$products as $product">
-        <h2>{$product->name}</h2>
-        <p>{$product->category}</p>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Tags</th>
+                <th scope="col">Active</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr n:foreach="$products as $product">
+                <td>{$product->id}</td>
+                <td><a n:href="Product:edit, $product->id">{$product->name}</a></td>
+                <td>{$product->category}</td>
+                <td>....</td>
+                <td>{$product->active}</td>
+                <td>edit, delete, activete/deactivate</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 {/block}
