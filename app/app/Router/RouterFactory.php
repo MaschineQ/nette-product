@@ -16,7 +16,7 @@ final class RouterFactory
 		/**
 		 * Admin
 		 */
-		$router->addRoute('admin/<presenter>/<action>[/<id>]', [
+		$router->addRoute('admin/<presenter>/<action>[/<id \d+>]', [
 			'presenter' => 'Homepage',
 			'action' => 'default',
 			'module' => 'Admin',
@@ -25,7 +25,7 @@ final class RouterFactory
 		/**
 		 * Front
 		 */
-		$router->addRoute('/<presenter>/<action>[/<id>]', [
+		$router->addRoute('/<presenter>/<action>[/<id \d+>]', [
 			'presenter' => 'Homepage',
 			'action' => 'default',
 			'module' => 'Front',
