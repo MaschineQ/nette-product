@@ -1,0 +1,23 @@
+{block content}
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr n:foreach="$tags as $tag">
+                <td>{$tag->id}</td>
+                <td><a n:href="Tag:edit, $tag->id">{$tag->name}</a></td>
+                <td>
+                    <a n:href="Tag:edit, $tag->id"><span data-feather="edit-2"></span></a>
+                    <a n:href="Tag:delete, $tag->id" onclick="return confirm('Are you sure you want to delete the Tag?')"><span data-feather="trash-2"></span></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{/block}

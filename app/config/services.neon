@@ -8,3 +8,5 @@ services:
 	- App\AdminModule\Model\ProductManager
 	- App\AdminModule\Form\CategoryFormFactory
 	- App\AdminModule\Model\CategoryManager
+	- App\AdminModule\Form\TagFormFactory
+	- App\AdminModule\Model\TagManager
