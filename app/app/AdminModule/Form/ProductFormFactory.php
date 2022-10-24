@@ -11,7 +11,6 @@ use App\AdminModule\Model\TagManager;
 use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;
 use Nette\Utils\Json;
-
 class ProductFormFactory
 {
 	private ?int $productId;
@@ -35,6 +34,10 @@ class ProductFormFactory
 		$tagsForSelect = $this->tagManager->getTagsForSelect();
 
 		$form->addText('name', 'Name')
+			->setRequired();
+		$form->addText('published_at', 'Published at')
+			->setHtmlType('date')
+			->setHtmlAttribute('id', 'datepicker')
 			->setRequired();
 		$form->addText('price', 'Price')
 			->addRule(Form::FLOAT, 'Price must be a number.')

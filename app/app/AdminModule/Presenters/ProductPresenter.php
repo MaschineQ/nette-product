@@ -7,6 +7,7 @@ namespace App\AdminModule\Presenters;
 use App\AdminModule\Form\ProductFormFactory;
 use App\AdminModule\Model\ProductManager;
 use Nette\Application\UI\Form;
+use Nette\Utils\DateTime;
 use Nette\Utils\Json;
 
 final class ProductPresenter extends BasePresenter
@@ -49,6 +50,8 @@ final class ProductPresenter extends BasePresenter
 
 		/** @var string $tag */
 		$tag = $product->tag;
+        /** @var DateTime $publishedAt */
+		$publishedAt = $product->published_at;
 
 		$this['productForm']->setDefaults([
 			'name' => $product->name,
@@ -56,6 +59,7 @@ final class ProductPresenter extends BasePresenter
 			'category' => $product->category,
 			'tag' => Json::decode($tag),
 			'active' => $product->active,
+			'published_at' => DateTime::from($publishedAt)->format('Y-m-d'),
 		]);
 	}
 

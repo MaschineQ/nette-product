@@ -15,7 +15,7 @@ final class FormFactory
 
 	public function create(): Form
 	{
-        BootstrapForm::switchBootstrapVersion(BootstrapVersion::V5);
+		BootstrapForm::switchBootstrapVersion(BootstrapVersion::V5);
 		return new BootstrapForm();
 	}
 }
