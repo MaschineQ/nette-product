@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\AdminModule\Form;
 
 
+use App\AdminModule\Model\CategoryManager;
 use App\AdminModule\Model\ProductManager;
 use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;
@@ -18,6 +19,7 @@ class ProductFormFactory
 	public function __construct(
 		private FormFactory $formFactory,
 		private ProductManager $productManager,
+		private CategoryManager $categoryManager,
 	) {
 	}
 
@@ -27,17 +29,24 @@ class ProductFormFactory
 		$this->productId = $productId;
 		$form = $this->formFactory->create();
 
+		$categoriesForSelect = $this->categoryManager->getCategoriesForSelect();
+
 		$form->addText('name', 'Name')
 			->setRequired();
 		$form->addText('price', 'Price')
 			->addRule(Form::FLOAT, 'Price must be a number.')
 			->setNullable()
 			->setRequired();
-		$form->addSelect('category', 'Category', [
-			'1' => 'Category 1',
-			'2' => 'Category 2',
-		])
-			->setRequired();
+
+		if ($categoriesForSelect) {
+			$form->addSelect('category', 'Category', $categoriesForSelect)
+				->setPrompt('Select category')
+				->setRequired();
+		} else {
+			$form->addError('You have to create category first. Go to category section');
+		}
+
+
 		$form->addMultiSelect('tag', 'Tags')
 			->setItems([
 				'1' => 'Tag 1',

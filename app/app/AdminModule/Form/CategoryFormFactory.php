@@ -27,7 +27,7 @@ class CategoryFormFactory
 		$form->addText('name', 'Name')
 			->setRequired();
 		$form->addSubmit('save', 'Save');
-		$form->onSuccess[] = [$this, 'categoryFormSucceededFormSucceeded'];
+		$form->onSuccess[] = [$this, 'categoryFormSucceeded']; /** @phpstan-ignore-line */
 
 		return $form;
 	}
