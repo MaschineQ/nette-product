@@ -7,6 +7,8 @@ namespace App\AdminModule\Presenters;
 use App\AdminModule\Form\CategoryFormFactory;
 use App\AdminModule\Model\CategoryManager;
 use Nette\Application\UI\Form;
+use Nette\Database\ForeignKeyConstraintViolationException;
+use PhpParser\ConstExprEvaluationException;
 
 final class CategoryPresenter extends BasePresenter
 {
@@ -52,8 +54,13 @@ final class CategoryPresenter extends BasePresenter
 
 	public function actionDelete(int $id): void
 	{
-		$this->categoryManager->deleteCategory($id);
-		$this->flashMessage('The category has been deleted.', 'success');
+        try {
+            $this->categoryManager->deleteCategory($id);
+            $this->flashMessage('The category has been deleted.', 'success');
+        } catch (ForeignKeyConstraintViolationException) {
+            $this->flashMessage('The category cannot be deleted. The category is assigned to the product.', 'danger');
+        }
+
 		$this->redirect('default');
 	}
 }
