@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\AdminModule\Form;
 
+use Contributte\FormsBootstrap\BootstrapForm;
+use Contributte\FormsBootstrap\Enums\BootstrapVersion;
 use Nette;
 use Nette\Application\UI\Form;
 
@@ -13,6 +15,7 @@ final class FormFactory
 
 	public function create(): Form
 	{
-		return new Form;
+        BootstrapForm::switchBootstrapVersion(BootstrapVersion::V5);
+		return new BootstrapForm();
 	}
 }

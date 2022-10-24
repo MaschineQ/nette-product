@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52d4ee4de74cdff57b34289d77485c81",
+    "content-hash": "10816110f0eae855c8a3770136cfc887",
     "packages": [
         {
             "name": "composer/pcre",
@@ -223,6 +223,78 @@
                 }
             ],
             "time": "2022-02-25T21:32:43+00:00"
+        },
+        {
+            "name": "contributte/forms-bootstrap",
+            "version": "v0.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/contributte/forms-bootstrap.git",
+                "reference": "9708a54e509504ffffea1e5d9527f0d0812fd506"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/contributte/forms-bootstrap/zipball/9708a54e509504ffffea1e5d9527f0d0812fd506",
+                "reference": "9708a54e509504ffffea1e5d9527f0d0812fd506",
+                "shasum": ""
+            },
+            "require": {
+                "nette/application": "^3.0",
+                "nette/forms": "3.1.7",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "ninjify/qa": "^v0.12",
+                "phpstan/phpstan": "^0.12.6",
+                "phpstan/phpstan-deprecation-rules": "^0.12",
+                "phpstan/phpstan-nette": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Contributte\\FormsBootstrap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dalibor Korpar",
+                    "email": "dalibor.korpar@gmail.com"
+                }
+            ],
+            "description": "Nette extension for Bootstrap forms",
+            "homepage": "https://github.com/contributte/forms-bootstrap",
+            "keywords": [
+                "Forms",
+                "bootstrap",
+                "library",
+                "nette"
+            ],
+            "support": {
+                "issues": "https://github.com/contributte/forms-bootstrap/issues",
+                "source": "https://github.com/contributte/forms-bootstrap/tree/v0.5.3"
+            },
+            "funding": [
+                {
+                    "url": "https://contributte.org/partners.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/f3l1x",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-05-23T08:52:09+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
