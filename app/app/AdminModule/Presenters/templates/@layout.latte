@@ -56,25 +56,25 @@
 			<div class="position-sticky pt-3">
 				<ul class="nav flex-column">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">
+						<a n:class="nav-link, $presenter->isLinkCurrent('Homepage:default') ? active" aria-current="page" n:href="Homepage:default">
 							<span data-feather="home"></span>
 							Dashboard
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">
+						<a n:class="nav-link, $presenter->isLinkCurrent('Product:*') ? active" n:href="Product:default">
 							<span data-feather="shopping-cart"></span>
 							Products
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">
+						<a n:class="nav-link, $presenter->isLinkCurrent('Category:*') ? active" n:href="Category:default">
 							<span data-feather="users"></span>
 							Category
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">
+						<a n:class="nav-link, $presenter->isLinkCurrent('Tag:*') ? active" n:href="Tag:default">
 							<span data-feather="bar-chart-2"></span>
 							Tags
 						</a>
@@ -85,7 +85,7 @@
 
 		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-				<h1 class="h2">Dashboard</h1>
+				{include title}
 			</div>
 			<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 

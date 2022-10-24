@@ -7,6 +7,7 @@ namespace App\AdminModule\Form;
 
 use App\AdminModule\Model\CategoryManager;
 use App\AdminModule\Model\ProductManager;
+use App\AdminModule\Model\TagManager;
 use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;
 use Nette\Utils\Json;
@@ -20,6 +21,7 @@ class ProductFormFactory
 		private FormFactory $formFactory,
 		private ProductManager $productManager,
 		private CategoryManager $categoryManager,
+		private TagManager $tagManager,
 	) {
 	}
 
@@ -30,6 +32,7 @@ class ProductFormFactory
 		$form = $this->formFactory->create();
 
 		$categoriesForSelect = $this->categoryManager->getCategoriesForSelect();
+		$tagsForSelect = $this->tagManager->getTagsForSelect();
 
 		$form->addText('name', 'Name')
 			->setRequired();
@@ -46,13 +49,13 @@ class ProductFormFactory
 			$form->addError('You have to create category first. Go to category section');
 		}
 
+		if ($tagsForSelect) {
+			$form->addMultiSelect('tag', 'Tags', $tagsForSelect)
+				->setRequired();
+		} else {
+			$form->addError('You have to create tag first. Go to tag section');
+		}
 
-		$form->addMultiSelect('tag', 'Tags')
-			->setItems([
-				'1' => 'Tag 1',
-				'2' => 'Tag 2',
-			])
-			->setRequired();
 		$form->addCheckbox('active', 'Active');
 		$form->addSubmit('save', 'Save');
 		$form->onSuccess[] = [$this, 'productFormSucceeded']; /** @phpstan-ignore-line */
