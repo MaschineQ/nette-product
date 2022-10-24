@@ -8,7 +8,6 @@ use App\AdminModule\Form\ProductFormFactory;
 use App\AdminModule\Model\ProductManager;
 use Nette\Application\UI\Form;
 use Nette\Utils\DateTime;
-use Nette\Utils\Json;
 
 final class ProductPresenter extends BasePresenter
 {
@@ -43,21 +42,25 @@ final class ProductPresenter extends BasePresenter
 	{
 		$this->productId = $id;
 		$product = $this->productManager->getProduct($id);
-
 		if (!$product) {
 			$this->error('Product not found');
 		}
+		$tags = $product->related('product_tag');
 
-		/** @var string $tag */
-		$tag = $product->tag;
-        /** @var DateTime $publishedAt */
+		$tagsArray = [];
+		foreach ($tags as $tag) {
+			$tagsArray[] = $tag->tag;
+		}
+		$tags = $tagsArray;
+
+		/** @var DateTime $publishedAt */
 		$publishedAt = $product->published_at;
 
 		$this['productForm']->setDefaults([
 			'name' => $product->name,
 			'price' => $product->price,
 			'category' => $product->category,
-			'tag' => Json::decode($tag),
+			'tag' => $tags,
 			'active' => $product->active,
 			'published_at' => DateTime::from($publishedAt)->format('Y-m-d'),
 		]);

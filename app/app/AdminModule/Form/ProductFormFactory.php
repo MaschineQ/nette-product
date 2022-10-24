@@ -10,7 +10,6 @@ use App\AdminModule\Model\ProductManager;
 use App\AdminModule\Model\TagManager;
 use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;
-use Nette\Utils\Json;
 class ProductFormFactory
 {
 	private ?int $productId;
@@ -70,10 +69,13 @@ class ProductFormFactory
 	public function productFormSucceeded(Form $form, ArrayHash $values): void
 	{
 		$productId = $this->productId;
-		$values['tag'] = Json::encode($values['tag']);
+		/** @var mixed[] $tags */
+		$tags = $values['tag'];
+		unset($values['tag']);
 
 		if ($productId) {
 			$this->productManager->updateProduct($productId, $values);
+			$this->productManager->insertTags($productId, $tags);
 		} else {
 			$this->productManager->addProduct($values);
 

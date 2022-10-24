@@ -64,4 +64,29 @@ class ProductManager
 			throw new Exception('Product not found');
 		}
 	}
+
+
+	/**
+	 * @param int $productId
+	 * @param mixed[] $tags
+	 */
+	public function insertTags(int $productId, array $tags): void
+	{
+		bdump($tags);
+		$this->database->table('product_tag')->where('product_id', $productId)->delete();
+		foreach ($tags as $tag) {
+			$this->database->table('product_tag')->insert([
+				'product_id' => $productId,
+				'tag_id' => $tag,
+			]);
+		}
+	}
+
+
+/*
+		foreach ($tags as $tag) {
+			$this->database->query("INSERT INTO product_tag (product_id, tag_id) VALUES (?, ?) ON DUPLICATE KEY UPDATE product_id=(?), tag_id=(?)", $productId, $tag,  $productId, $tag);
+		}
+		$this->database->table('product_tag')->where('product_id', $productId)->where('tag_id NOT IN (?)', $tags)->delete();
+  */
 }
