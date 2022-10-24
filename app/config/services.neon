@@ -6,3 +6,5 @@ services:
 	- App\AdminModule\Form\FormFactory
 	- App\AdminModule\Form\ProductFormFactory
 	- App\AdminModule\Model\ProductManager
+	- App\AdminModule\Form\CategoryFormFactory
+	- App\AdminModule\Model\CategoryManager
