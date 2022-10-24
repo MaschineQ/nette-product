@@ -25,9 +25,10 @@ class CategoryManager
 		return $this->database->table('category')->fetchAll();
 	}
 
-    /**
-     * @return array<ActiveRow>
-     */
+
+	/**
+	 * @return array<ActiveRow>
+	 */
 	public function getCategoriesForSelect(): array
 	{
 		return $this->database->table('category')->fetchPairs('id', 'name');

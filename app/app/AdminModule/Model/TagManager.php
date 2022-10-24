@@ -25,9 +25,10 @@ class TagManager
 		return $this->database->table('tag')->fetchAll();
 	}
 
-    /**
-     * @return array<ActiveRow>
-     */
+
+	/**
+	 * @return array<ActiveRow>
+	 */
 	public function getTagsForSelect(): array
 	{
 		return $this->database->table('tag')->fetchPairs('id', 'name');

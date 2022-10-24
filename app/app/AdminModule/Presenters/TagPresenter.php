@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace App\AdminModule\Presenters;
 
-use App\AdminModule\Form\CategoryFormFactory;
 use App\AdminModule\Form\TagFormFactory;
-use App\AdminModule\Model\CategoryManager;
 use App\AdminModule\Model\TagManager;
 use Nette\Application\UI\Form;
 
 final class TagPresenter extends BasePresenter
 {
 	public function __construct(
-		private ?int                $tagId,
+		private ?int $tagId,
 		private TagFormFactory $tagFormFactory,
-		private TagManager     $tagManager,
+		private TagManager $tagManager,
 	) {
 		parent::__construct();
 	}

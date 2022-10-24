@@ -12,9 +12,9 @@ use Nette\Utils\ArrayHash;
 class TagFormFactory
 {
 	public function __construct(
-		private ?int        $tagId,
+		private ?int $tagId,
 		private FormFactory $formFactory,
-		private TagManager  $tagManager,
+		private TagManager $tagManager,
 	) {
 	}
 
