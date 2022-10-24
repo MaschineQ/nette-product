@@ -31,7 +31,7 @@
                 <td>
                     <a n:href="Product:edit, $product->id"><span data-feather="edit-2"></span></a>
                     <a n:href="Product:delete, $product->id" onclick="return confirm('Are you sure you want to delete the product?')"><span data-feather="trash-2" class="text-danger"></span></a>
-                    <a href="#"><span data-feather="disc" class="text-success"></span></a>
+                    <a href="#"><span data-feather="disc" class="{if $product->active === 1}text-success{else}text-danger{/if}"></span></a>
                 </td>
             </tr>
             </tbody>
