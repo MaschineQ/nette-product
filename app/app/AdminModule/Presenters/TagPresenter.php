@@ -7,6 +7,7 @@ namespace App\AdminModule\Presenters;
 use App\AdminModule\Form\TagFormFactory;
 use App\AdminModule\Model\TagManager;
 use Nette\Application\UI\Form;
+use Nette\Database\ForeignKeyConstraintViolationException;
 
 final class TagPresenter extends BasePresenter
 {
@@ -52,8 +53,12 @@ final class TagPresenter extends BasePresenter
 
 	public function actionDelete(int $id): void
 	{
-		$this->tagManager->deleteTag($id);
-		$this->flashMessage('The Tag has been deleted.', 'success');
+		try {
+			$this->tagManager->deleteTag($id);
+			$this->flashMessage('The tag has been deleted.', 'success');
+		} catch (ForeignKeyConstraintViolationException) {
+			$this->flashMessage('The tag cannot be deleted. The tag is assigned to the product.', 'danger');
+		}
 		$this->redirect('default');
 	}
 }
