@@ -68,7 +68,6 @@ class ProductManager
 		$product = $this->database->table('product')->get($id);
 		if ($product) {
 			$product->delete();
-			$this->productTagManager->deleteTags($id);
 		} else {
 			throw new Exception('Product not found');
 		}
