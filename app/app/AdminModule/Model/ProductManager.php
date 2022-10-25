@@ -33,22 +33,29 @@ class ProductManager
 	}
 
 
-	public function addProduct(ArrayHash $values): void
+	/**
+	 * @param mixed[] $tags
+	 */
+	public function addProduct(ArrayHash $values, array $tags): void
 	{
-		$this->database->table('product')->insert($values);
+		/** @var ActiveRow $product */
+		$product = $this->database->table('product')->insert($values);
+
+		assert(is_int($product->id));
+		$this->insertTags($product->id, $tags);
 	}
 
 
 	/**
-	 * @param int $id
-	 * @param ArrayHash $values
-	 * @throws Exception
+	 * @param mixed[] $tags
 	 */
-	public function updateProduct(int $id, ArrayHash $values): void
+	public function updateProduct(int $id, ArrayHash $values, array $tags): void
 	{
 		$product = $this->database->table('product')->get($id);
 		if ($product) {
 			$product->update($values);
+			$this->deleteTags($id);
+			$this->insertTags($id, $tags);
 		} else {
 			throw new Exception('Product not found');
 		}
@@ -67,13 +74,10 @@ class ProductManager
 
 
 	/**
-	 * @param int $productId
 	 * @param mixed[] $tags
 	 */
 	public function insertTags(int $productId, array $tags): void
 	{
-		bdump($tags);
-		$this->database->table('product_tag')->where('product_id', $productId)->delete();
 		foreach ($tags as $tag) {
 			$this->database->table('product_tag')->insert([
 				'product_id' => $productId,
@@ -83,10 +87,8 @@ class ProductManager
 	}
 
 
-/*
-		foreach ($tags as $tag) {
-			$this->database->query("INSERT INTO product_tag (product_id, tag_id) VALUES (?, ?) ON DUPLICATE KEY UPDATE product_id=(?), tag_id=(?)", $productId, $tag,  $productId, $tag);
-		}
-		$this->database->table('product_tag')->where('product_id', $productId)->where('tag_id NOT IN (?)', $tags)->delete();
-  */
+	public function deleteTags(int $productId): void
+	{
+		$this->database->table('product_tag')->where('product_id', $productId)->delete();
+	}
 }

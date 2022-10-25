@@ -69,16 +69,14 @@ class ProductFormFactory
 	public function productFormSucceeded(Form $form, ArrayHash $values): void
 	{
 		$productId = $this->productId;
-		/** @var mixed[] $tags */
+		assert(is_array($values['tag']));
 		$tags = $values['tag'];
 		unset($values['tag']);
 
 		if ($productId) {
-			$this->productManager->updateProduct($productId, $values);
-			$this->productManager->insertTags($productId, $tags);
+			$this->productManager->updateProduct($productId, $values, $tags);
 		} else {
-			$this->productManager->addProduct($values);
-
+			$this->productManager->addProduct($values, $tags);
 		}
 	}
 }
