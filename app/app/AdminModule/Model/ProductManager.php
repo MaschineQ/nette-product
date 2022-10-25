@@ -13,6 +13,7 @@ class ProductManager
 {
 	public function __construct(
 		private Explorer $database,
+		private ProductTagManager $productTagManager,
 	) {
 
 	}
@@ -42,7 +43,7 @@ class ProductManager
 		$product = $this->database->table('product')->insert($values);
 
 		assert(is_int($product->id));
-		$this->insertTags($product->id, $tags);
+		$this->productTagManager->insertTags($product->id, $tags);
 	}
 
 
@@ -54,8 +55,8 @@ class ProductManager
 		$product = $this->database->table('product')->get($id);
 		if ($product) {
 			$product->update($values);
-			$this->deleteTags($id);
-			$this->insertTags($id, $tags);
+			$this->productTagManager->deleteTags($id);
+			$this->productTagManager->insertTags($id, $tags);
 		} else {
 			throw new Exception('Product not found');
 		}
@@ -67,28 +68,9 @@ class ProductManager
 		$product = $this->database->table('product')->get($id);
 		if ($product) {
 			$product->delete();
+            $this->productTagManager->deleteTags($id);
 		} else {
 			throw new Exception('Product not found');
 		}
-	}
-
-
-	/**
-	 * @param mixed[] $tags
-	 */
-	public function insertTags(int $productId, array $tags): void
-	{
-		foreach ($tags as $tag) {
-			$this->database->table('product_tag')->insert([
-				'product_id' => $productId,
-				'tag_id' => $tag,
-			]);
-		}
-	}
-
-
-	public function deleteTags(int $productId): void
-	{
-		$this->database->table('product_tag')->where('product_id', $productId)->delete();
 	}
 }

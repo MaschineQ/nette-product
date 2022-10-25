@@ -10,3 +10,4 @@ services:
 	- App\AdminModule\Model\CategoryManager
 	- App\AdminModule\Form\TagFormFactory
 	- App\AdminModule\Model\TagManager
+	- App\AdminModule\Model\ProductTagManager
