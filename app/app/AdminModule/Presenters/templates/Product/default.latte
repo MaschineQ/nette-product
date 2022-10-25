@@ -6,6 +6,7 @@
     <div class="btn-toolbar mb-4 mb-md-4">
         <div class="btn-group me-2">
             <a n:href="Product:add" class="btn btn-sm btn-outline-secondary"><span data-feather="plus-square" class="text-success"></span> Product Add</a>
+            <a n:href="Product:loadExchangeRate" class="btn btn-sm btn-outline-secondary"><span data-feather="plus-square" class="text-danger"></span> Update Exchange Rate</a>
         </div>
     </div>
 
@@ -15,6 +16,9 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Price CZK</th>
+                <th scope="col">Price EU</th>
+                <th scope="col">Published At</th>
                 <th scope="col">Category</th>
                 <th scope="col">Tags</th>
                 <th scope="col">Active</th>
@@ -25,8 +29,14 @@
             <tr n:foreach="$products as $product">
                 <td>{$product->id}</td>
                 <td><a n:href="Product:edit, $product->id">{$product->name}</a></td>
-                <td>{$product->category}</td>
-                <td>....</td>
+                <td>{$product->price|round: 3}</td>
+                <td>{if null !== $exchangeRate}{($product->price * $exchangeRate)|round: 3}{else}Failed to load exchange rate<br>You can try updating <a n:href="Product:loadExchangeRate">here</a>{/if}</td>
+                <td>{$product->published_at|date:'d.m.Y'}</td>
+                <td>{$product->ref('category', 'category')->name}</td>
+                <td>{foreach $product->related('product_tag') as $tag}
+                        <span class="badge bg-primary">{$tag->ref('tag', 'tag_id')->name}</span>
+                    {/foreach}
+                </td>
                 <td>{$product->active}</td>
                 <td>
                     <a n:href="Product:edit, $product->id"><span data-feather="edit-2"></span></a>

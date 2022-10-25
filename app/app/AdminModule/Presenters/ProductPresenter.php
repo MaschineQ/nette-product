@@ -6,6 +6,7 @@ namespace App\AdminModule\Presenters;
 
 use App\AdminModule\Form\ProductFormFactory;
 use App\AdminModule\Model\ProductManager;
+use App\External\ExchangeRateCnb;
 use Nette\Application\UI\Form;
 use Nette\Utils\DateTime;
 
@@ -15,6 +16,7 @@ final class ProductPresenter extends BasePresenter
 		private ?int $productId,
 		private ProductFormFactory $productFormFactory,
 		private ProductManager $productManager,
+		private ExchangeRateCnb $exchangeRateCnb,
 	) {
 		parent::__construct();
 	}
@@ -23,6 +25,7 @@ final class ProductPresenter extends BasePresenter
 	public function actionDefault(): void
 	{
 		$this->template->products = $this->productManager->getProducts();
+		$this->template->exchangeRate = $this->exchangeRateCnb->getExchangeRateFromDb();
 	}
 
 
@@ -71,6 +74,18 @@ final class ProductPresenter extends BasePresenter
 	{
 		$this->productManager->deleteProduct($id);
 		$this->flashMessage('The product has been deleted.', 'success');
+		$this->redirect('default');
+	}
+
+
+	public function actionLoadExchangeRate(): void
+	{
+		try {
+			$this->exchangeRateCnb->insertExchangeRate();
+			$this->flashMessage('The exchange rate has been loaded.', 'success');
+		} catch (\Exception $e) {
+			$this->flashMessage('The exchange rate has not been loaded.', 'danger');
+		}
 		$this->redirect('default');
 	}
 }
