@@ -38,11 +38,10 @@
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-	<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+	<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" n:href="Homepage:default">DMQ dashboard</a>
 	<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
 	<div class="navbar-nav">
 		<div class="nav-item text-nowrap">
 			<a class="nav-link px-3" href="#">Sign out</a>
@@ -64,7 +63,7 @@
 					<li class="nav-item">
 						<a n:class="nav-link, $presenter->isLinkCurrent('Product:*') ? active" n:href="Product:default">
 							<span data-feather="shopping-cart"></span>
-							Products
+							Product
 						</a>
 					</li>
 					<li class="nav-item">
@@ -76,7 +75,7 @@
 					<li class="nav-item">
 						<a n:class="nav-link, $presenter->isLinkCurrent('Tag:*') ? active" n:href="Tag:default">
 							<span data-feather="bar-chart-2"></span>
-							Tags
+							Tag
 						</a>
 					</li>
 				</ul>
@@ -87,7 +86,7 @@
 			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 				{include title}
 			</div>
-			<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+			<div n:foreach="$flashes as $flash" n:class="p-2, mb-2, rounded, flash, $flash->type">{$flash->message}</div>
 
 			{include content}
 
