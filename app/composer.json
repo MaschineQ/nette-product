@@ -24,7 +24,7 @@
 		"contributte/forms-bootstrap": "^0.5.3"
 	},
 	"require-dev": {
-		"nette/tester": "^2.3",
+		"nette/tester": "^2.4",
 		"symfony/thanks": "^1",
 		"phpstan/phpstan-nette": "^1.1",
 		"phpstan/extension-installer": "^1.2"
