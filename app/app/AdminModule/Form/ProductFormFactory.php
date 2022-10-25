@@ -10,6 +10,8 @@ use App\AdminModule\Model\ProductManager;
 use App\AdminModule\Model\TagManager;
 use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;
+use Nette\Utils\DateTime;
+
 class ProductFormFactory
 {
 	private ?int $productId;
@@ -33,37 +35,48 @@ class ProductFormFactory
 		$tagsForSelect = $this->tagManager->getTagsForSelect();
 
 		$form->addText('name', 'Name')
-			->setRequired();
+			->setRequired('Please enter the name of the product.');
 		$form->addText('published_at', 'Published at')
 			->setHtmlType('date')
 			->setHtmlAttribute('id', 'datepicker')
-			->setRequired();
+			->setRequired('Please enter the date of publication.');
 		$form->addText('price', 'Price')
 			->addRule(Form::FLOAT, 'Price must be a number.')
 			->setNullable()
-			->setRequired();
+			->setRequired('Please enter the price of the product.');
 
 		if ($categoriesForSelect) {
 			$form->addSelect('category', 'Category', $categoriesForSelect)
 				->setPrompt('Select category')
-				->setRequired();
+				->setRequired('Please select the category of the product.');
 		} else {
 			$form->addError('You have to create category first. Go to category section');
 		}
 
 		if ($tagsForSelect) {
 			$form->addMultiSelect('tag', 'Tags', $tagsForSelect)
-				->setRequired();
+				->setRequired('Please select the tags of the product.');
 		} else {
 			$form->addError('You have to create tag first. Go to tag section');
 		}
 
 		$form->addCheckbox('active', 'Active')
-                    ->setDefaultValue(true);
+					->setDefaultValue(true);
 		$form->addSubmit('save', 'Save');
+
+		$form->onValidate[] = [$this, 'validateProductForm']; /** @phpstan-ignore-line */
 		$form->onSuccess[] = [$this, 'productFormSucceeded']; /** @phpstan-ignore-line */
 
 		return $form;
+	}
+
+
+	public function validateProductForm(Form $form, ArrayHash $values): void
+	{
+		if (!$this->validateDate($form->getValues()->published_at)) {
+			$form['published_at']->addError('Date is not valid'); /** @phpstan-ignore-line */
+		}
+
 	}
 
 
@@ -79,5 +92,12 @@ class ProductFormFactory
 		} else {
 			$this->productManager->addProduct($values, $tags);
 		}
+	}
+
+
+	private function validateDate(string $date, string $format = 'Y-m-d'): bool
+	{
+		$d = DateTime::createFromFormat($format, $date);
+		return $d && $d->format($format) == $date;
 	}
 }
