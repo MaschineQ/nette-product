@@ -58,7 +58,8 @@ class ProductFormFactory
 			$form->addError('You have to create tag first. Go to tag section');
 		}
 
-		$form->addCheckbox('active', 'Active');
+		$form->addCheckbox('active', 'Active')
+                    ->setDefaultValue(true);
 		$form->addSubmit('save', 'Save');
 		$form->onSuccess[] = [$this, 'productFormSucceeded']; /** @phpstan-ignore-line */
 
