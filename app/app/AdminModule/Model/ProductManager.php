@@ -72,4 +72,26 @@ class ProductManager
 			throw new Exception('Product not found');
 		}
 	}
+
+
+	public function activateProduct(int $id): void
+	{
+		$product = $this->database->table('product')->get($id);
+		if ($product) {
+			$product->update(['active' => 1]);
+		} else {
+			throw new Exception('Product not found');
+		}
+	}
+
+
+	public function deactivateProduct(int $id): void
+	{
+		$product = $this->database->table('product')->get($id);
+		if ($product) {
+			$product->update(['active' => 0]);
+		} else {
+			throw new Exception('Product not found');
+		}
+	}
 }

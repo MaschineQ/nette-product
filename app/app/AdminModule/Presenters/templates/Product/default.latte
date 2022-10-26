@@ -37,11 +37,15 @@
                         <span class="badge bg-primary">{$tag->ref('tag', 'tag_id')->name}</span>
                     {/foreach}
                 </td>
-                <td>{$product->active}</td>
+                <td><span data-feather="disc" class="{if $product->active === 1}text-success{else}text-danger{/if}"></span></td>
                 <td>
                     <a n:href="Product:edit, $product->id"><span data-feather="edit-2"></span></a>
                     <a n:href="Product:delete, $product->id" onclick="return confirm('Are you sure you want to delete the product?')"><span data-feather="trash-2" class="text-danger"></span></a>
-                    <a href="#"><span data-feather="disc" class="{if $product->active === 1}text-success{else}text-danger{/if}"></span></a>
+                    {if $product->active === 0}
+                        <a n:href="activate! $product->id"><span data-feather="disc" class="text-danger"></span></a>
+                    {else}
+                        <a n:href="deactivate! $product->id"><span data-feather="disc" class="text-success"></span></a>
+                    {/if}
                 </td>
             </tr>
             </tbody>

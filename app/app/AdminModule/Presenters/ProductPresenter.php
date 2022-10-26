@@ -88,4 +88,20 @@ final class ProductPresenter extends BasePresenter
 		}
 		$this->redirect('default');
 	}
+
+
+	public function handleActivate(int $id): void
+	{
+		$this->productManager->activateProduct($id);
+		$this->flashMessage('The product has been activated.', 'success');
+		$this->redirect('default');
+	}
+
+
+	public function handleDeactivate(int $id): void
+	{
+		$this->productManager->deactivateProduct($id);
+		$this->flashMessage('The product has been deactivated.', 'success');
+		$this->redirect('default');
+	}
 }
