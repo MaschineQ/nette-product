@@ -8,7 +8,7 @@ use Tester\Assert;
 $container = require __DIR__ . '/../bootstrap.php';
 
 
-class CategoryPresenterTest extends Tester\TestCase
+class TagPresenterTest extends Tester\TestCase
 {
 	public function __construct(
 		private Container $container,
@@ -16,13 +16,13 @@ class CategoryPresenterTest extends Tester\TestCase
 	}
 
 
-	public function testGetCategories(): void
+	public function testGetTags(): void
 	{
 		$presenterFactory = $this->container->getByType('Nette\Application\IPresenterFactory');
-		$presenter = $presenterFactory->createPresenter('Admin:Category');
+		$presenter = $presenterFactory->createPresenter('Admin:Tag');
 		$presenter->autoCanonicalize = false;
 
-		$request = new Nette\Application\Request('Admin:Category', 'GET', ['action' => 'default']);
+		$request = new Nette\Application\Request('Admin:Tag', 'GET', ['action' => 'default']);
 		$response = $presenter->run($request);
 
 		Assert::same(200, $presenter->getHttpResponse()->getCode());
@@ -35,10 +35,10 @@ class CategoryPresenterTest extends Tester\TestCase
 	public function testAdd(): void
 	{
 		$presenterFactory = $this->container->getByType('Nette\Application\IPresenterFactory');
-		$presenter = $presenterFactory->createPresenter('Admin:Category');
+		$presenter = $presenterFactory->createPresenter('Admin:Tag');
 		$presenter->autoCanonicalize = false;
 
-		$request = new Nette\Application\Request('Admin:Category', 'GET', ['action' => 'add']);
+		$request = new Nette\Application\Request('Admin:Tag', 'GET', ['action' => 'add']);
 		$response = $presenter->run($request);
 
 		Assert::same(200, $presenter->getHttpResponse()->getCode());
@@ -57,10 +57,10 @@ class CategoryPresenterTest extends Tester\TestCase
 	public function testEdit(): void
 	{
 		$presenterFactory = $this->container->getByType('Nette\Application\IPresenterFactory');
-		$presenter = $presenterFactory->createPresenter('Admin:Category');
+		$presenter = $presenterFactory->createPresenter('Admin:tag');
 		$presenter->autoCanonicalize = false;
 
-		$request = new Nette\Application\Request('Admin:Category', 'GET', ['action' => 'edit', 'id' => 1]);
+		$request = new Nette\Application\Request('Admin:Tag', 'GET', ['action' => 'edit', 'id' => 1]);
 		$response = $presenter->run($request);
 
 		Assert::same(200, $presenter->getHttpResponse()->getCode());
@@ -76,25 +76,25 @@ class CategoryPresenterTest extends Tester\TestCase
 	}
 
 
-	public function testEditCategoryNotFound(): void
+	public function testEditTagNotFound(): void
 	{
 		$presenterFactory = $this->container->getByType('Nette\Application\IPresenterFactory');
-		$presenter = $presenterFactory->createPresenter('Admin:Category');
-		$request = new Nette\Application\Request('Admin:Category', 'GET', ['action' => 'edit', 'id' => 999999]);
+		$presenter = $presenterFactory->createPresenter('Admin:Tag');
+		$request = new Nette\Application\Request('Admin:Tag', 'GET', ['action' => 'edit', 'id' => 999999]);
 
 		Assert::exception(function () use ($presenter, $request) {
 			$presenter->run($request);
-		}, 'Nette\Application\BadRequestException', 'Category not found');
+		}, 'Nette\Application\BadRequestException', 'Tag not found');
 	}
 
 
 	public function testError(): void
 	{
 		$presenterFactory = $this->container->getByType('Nette\Application\IPresenterFactory');
-		$presenter = $presenterFactory->createPresenter('Admin:Category');
+		$presenter = $presenterFactory->createPresenter('Admin:Tag');
 		$presenter->autoCanonicalize = false;
 
-		$request = new Nette\Application\Request('Admin:Category', 'GET', ['action' => 'error']);
+		$request = new Nette\Application\Request('Admin:Tag', 'GET', ['action' => 'error']);
 
 		Assert::exception(function () use ($presenter, $request) {
 			$presenter->run($request);
@@ -102,5 +102,5 @@ class CategoryPresenterTest extends Tester\TestCase
 	}
 }
 
-$test = new CategoryPresenterTest($container);
+$test = new TagPresenterTest($container);
 $test->run();

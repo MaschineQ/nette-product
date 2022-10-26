@@ -16,7 +16,7 @@ class CategoryManagerTest extends Tester\TestCase
 	}
 
 
-	public function testGetCategoris(): void
+	public function testGetCategories(): void
 	{
 		$categoryManager = $this->container->getByType(CategoryManager::class);
 		$categories = $categoryManager->getCategories();
@@ -39,7 +39,7 @@ class CategoryManagerTest extends Tester\TestCase
 	}
 
 
-	public function testCategoryManagerGetCategoriesForSelect(): void
+	public function testGetCategoriesForSelect(): void
 	{
 		$categoryManager = $this->container->getByType(CategoryManager::class);
 		$category = $categoryManager->getCategoriesForSelect();
