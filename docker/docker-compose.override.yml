@@ -6,10 +6,6 @@ services:
     ports:
       - '4306:3306'
 
-  mysql2:
-    ports:
-      - '4307:3306'
-
   product-php:
     build:
       args:
