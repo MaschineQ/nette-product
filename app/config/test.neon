@@ -3,8 +3,8 @@ parameters:
 
 database:
 	dsn: 'mysql:host=mysql;dbname=product_test'
-	user: product_test
-	password: product_test
+	user: root
+	password: root
 
 application:
         mapping:
