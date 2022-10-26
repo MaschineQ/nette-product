@@ -13,12 +13,9 @@ class BasePresenter extends Presenter
 	{
 		parent::startup();
 
-		// přihlášení vyprší po 30 minutách neaktivity
-		$this->user->setExpiration('30 minutes');
-
 		if (!$this->user->isLoggedIn()) {
 			if ($this->user->getLogoutReason() === UserStorage::LOGOUT_INACTIVITY) {
-				$this->flashMessage('Z důvodu delší nečinnosti jste byli automaticky odhlášeni.', 'warning');
+				$this->flashMessage('You have been signed out due to inactivity. Please sign in again.', 'warning');
 				$this->redirect('Sign:in', ['backlink' => $this->storeRequest()]);
 			}
 			$this->redirect('Sign:in', ['backlink' => $this->storeRequest()]);
