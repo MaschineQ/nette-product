@@ -31,4 +31,18 @@ final class ProductPresenter extends Presenter
 			$this->error('Product not found');
 		}
 	}
+
+
+	public function actionTag(int $id): void
+	{
+		$this->template->products = $this->productManager->getProductsByTag($id);
+		$this->template->tag = $this->productManager->getProductTag($id);
+	}
+
+
+	public function actionCategory(int $id): void
+	{
+		$this->template->products = $this->productManager->getProductsByCategory($id);
+		$this->template->category = $this->productManager->getProductCategory($id);
+	}
 }

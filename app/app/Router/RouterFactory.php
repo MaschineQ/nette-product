@@ -31,6 +31,18 @@ final class RouterFactory
 			'module' => 'Front',
 		]);
 
+		$router->addRoute('/<presenter>/<action>/tag/<id \d+>', [
+			'presenter' => 'Product',
+			'action' => 'tag',
+			'module' => 'Front',
+		]);
+
+		$router->addRoute('/<presenter>/<action>/category/<id \d+>', [
+			'presenter' => 'Product',
+			'action' => 'category',
+			'module' => 'Front',
+		]);
+
 		return $router;
 	}
 }

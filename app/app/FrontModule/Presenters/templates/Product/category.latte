@@ -1,0 +1,17 @@
+{block title}
+    <h1>Products by Category <span class="text-danger">{$category->name}</span></h1>
+{/block}
+
+{block content}
+    <div class="row">
+        <div n:foreach="$products as $product" class="card p-2 m-2" style="width: 18rem;">
+            <img src="{$basePath}/img/1.jpg" class="card-img-top" alt="{$product->name}">
+            <div class="card-body">
+                <h5 class="card-title">{$product->name}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a n:href="Product:show $product->id" class="btn btn-primary">Show</a>
+                <span data-feather="disc" class="float-end {if $product->active === 1}text-success{else}text-danger{/if}"></span>
+            </div>
+        </div>
+    </div>
+{/block}
