@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\FrontModule\Presenters;
 
+use App\FrontModule\Model\CategoryManager;
 use App\FrontModule\Model\ProductManager;
+use App\FrontModule\Model\TagManager;
 use Nette\Application\UI\Presenter;
 
 
@@ -12,6 +14,8 @@ final class ProductPresenter extends Presenter
 {
 	public function __construct(
 		private ProductManager $productManager,
+		private CategoryManager $categoryManager,
+		private TagManager $tagManager,
 	) {
 	}
 
@@ -36,13 +40,13 @@ final class ProductPresenter extends Presenter
 	public function actionTag(int $id): void
 	{
 		$this->template->products = $this->productManager->getProductsByTag($id);
-		$this->template->tag = $this->productManager->getProductTag($id);
+		$this->template->tag = $this->tagManager->getTag($id);
 	}
 
 
 	public function actionCategory(int $id): void
 	{
 		$this->template->products = $this->productManager->getProductsByCategory($id);
-		$this->template->category = $this->productManager->getProductCategory($id);
+		$this->template->category = $this->categoryManager->getCategory($id);
 	}
 }

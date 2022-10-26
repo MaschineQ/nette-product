@@ -67,13 +67,13 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link href="#">
+						<a n:class="nav-link, $presenter->isLinkCurrent('Category:*') ? active" n:href="Category:default">
 							<span data-feather="users"></span>
 							Category
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link href="#">
+						<a n:class="nav-link, $presenter->isLinkCurrent('Tag:*') ? active" n:href="Tag:default">
 							<span data-feather="bar-chart-2"></span>
 							Tag
 						</a>

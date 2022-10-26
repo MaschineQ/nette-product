@@ -48,22 +48,11 @@ class ProductManager
 	}
 
 
-	public function getProductTag(int $id): ?ActiveRow
-	{
-		return $this->database->table('tag')->get($id);
-	}
-
-    /**
-     * @return array<ActiveRow>
-     */
+	/**
+	 * @return array<ActiveRow>
+	 */
 	public function getProductsByCategory(int $id): array
 	{
 		return $this->database->table('product')->where('category', $id)->fetchAll();
-	}
-
-
-	public function getProductCategory(int $id): ?ActiveRow
-	{
-		return $this->database->table('category')->get($id);
 	}
 }

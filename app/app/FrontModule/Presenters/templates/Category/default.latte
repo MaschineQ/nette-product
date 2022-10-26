@@ -1,0 +1,10 @@
+{block title}
+	<h1>Categories</h1>
+{/block}
+
+{block content}
+	<div class="row">
+	<div n:foreach="$categories as $category" class="mb-2">
+		<a n:href="Product:category $category->id" class="btn btn-primary">{$category->name}</a>
+	</div>
+{/block}

@@ -14,6 +14,8 @@ services:
 
 	# Front
 	- App\FrontModule\Model\ProductManager
+	- App\FrontModule\Model\CategoryManager
+	- App\FrontModule\Model\TagManager
 
 	# External
 	- App\External\ExchangeRateCnb
