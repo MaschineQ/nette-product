@@ -1,19 +1,103 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="cs">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="DMQ">
+	<title>{ifset title}{include title|stripHtml} | {/ifset}DMQ</title>
 
-	<title>{ifset title}{include title|stripHtml} | {/ifset}Product</title>
+	<!-- Bootstrap core CSS -->
+	<link href="{$basePath}/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="icon" href="{$basePath}/favicon.ico">
+	<meta name="theme-color" content="#7952b3">
+
+
+	<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+
+		@media (min-width: 768px) {
+			.bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			}
+		}
+	</style>
+
+
+	<!-- Custom styles for this template -->
+	<link href="{$basePath}/css/dashboard.css" rel="stylesheet">
 </head>
-
 <body>
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 
-	{include content}
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+	<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" n:href="Homepage:default">DMQ dashboard</a>
+	<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="navbar-nav">
+		<div class="nav-item text-nowrap">
+			<a class="nav-link px-3" href="#">Sign out</a>
+		</div>
+	</div>
+</header>
 
-	{block scripts}
-	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
-	{/block}
+<div class="container-fluid">
+	<div class="row">
+		<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+			<div class="position-sticky pt-3">
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a n:class="nav-link, $presenter->isLinkCurrent('Homepage:default') ? active" aria-current="page" n:href="Homepage:default">
+							<span data-feather="home"></span>
+							Dashboard
+						</a>
+					</li>
+					<li class="nav-item">
+						<a n:class="nav-link, $presenter->isLinkCurrent('Product:*') ? active" n:href="Product:default">
+							<span data-feather="shopping-cart"></span>
+							Product
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link href="#">
+							<span data-feather="users"></span>
+							Category
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link href="#">
+							<span data-feather="bar-chart-2"></span>
+							Tag
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+			<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+				{include title}
+			</div>
+			<div n:foreach="$flashes as $flash" n:class="p-2, mb-2, rounded, flash, $flash->type">{$flash->message}</div>
+
+			{include content}
+
+		</main>
+	</div>
+</div>
+
+
+<script src="{$basePath}/js/bootstrap.bundle.min.js"></script>
+<script src="{$basePath}/js/feather.min.js"></script>
+<script src="{$basePath}/js/dashboard.js"></script>
+<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
 </body>
 </html>

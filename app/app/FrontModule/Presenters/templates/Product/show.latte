@@ -1,0 +1,20 @@
+{block content}
+    <div class="card mb-3" >
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{$basePath}/img/1.jpg" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 n:block="title">{$product->name}</h1>
+                    <p class="card-text"><b>Description:</b> Lorem ipsum</p>
+                    <p class="card-text"><b>Price:</b> {$product->price} ,- Kč</p>
+                    <p class="card-text"><b>Category:</b> {$product->ref('category', 'category')->name}</p>
+                    <p class="card-text"><b>Tag:</b> <span n:foreach="$product->related('product_tag') as $tag" class="badge bg-primary m-1">{$tag->ref('tag', 'tag_id')->name}</span></p>
+                    <p class="card-text"><small class="text-muted">Published at {$product->published_at|date:'d.m.Y'}</small></p>
+                    <span data-feather="disc" class="float-end {if $product->active === 1}text-success{else}text-danger{/if}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}

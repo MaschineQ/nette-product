@@ -12,5 +12,8 @@ services:
 	- App\AdminModule\Model\TagManager
 	- App\AdminModule\Model\ProductTagManager
 
+	# Front
+	- App\FrontModule\Model\ProductManager
+
 	# External
 	- App\External\ExchangeRateCnb
