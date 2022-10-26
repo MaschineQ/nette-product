@@ -1,46 +1,48 @@
-Nette Web Project
+Product Project
 =================
 
-This is a simple, skeleton application using the [Nette](https://nette.org). This is meant to
-be used as a starting point for your new projects.
-
-[Nette](https://nette.org) is a popular tool for PHP web development.
-It is designed to be the most usable and friendliest as possible. It focuses
-on security and performance and is definitely one of the safest PHP frameworks.
-
-If you like Nette, **[please make a donation now](https://nette.org/donate)**. Thank you!
+Product CRUD in Nette Framework  -  [nette.org](nette.org)  
+Using Docker, Nette Framework 3.1, PHP 8.1, Nginx, Adminer, MariaDB 10.8, Bootstrap 5, FeathersJS
 
 
 Requirements
 ------------
 
-- Web Project for Nette 3.1 requires PHP 7.2
+- requires Docker
 
 
 Installation
 ------------
 
-The best way to install Web Project is using Composer. If you don't have Composer yet,
-download it following [the instructions](https://doc.nette.org/composer). Then use command:
-
-	composer create-project nette/web-project path/to/install
-	cd path/to/install
-
-
-Make directories `temp/` and `log/` writable.
+1. Clone this repo with GIT.
+2. Install docker in you don't have it (https://www.docker.com/products/docker-desktop)
+3. Get into folder `docker` and run `docker-compose up`. First run can take about 10 mins depending on your machine performance (the program will make libraries installation for the first time).
+4. Visit http://localhost:8080 in your browser.
 
 
-Web Server Setup
+First-run
 ----------------
 
-The simplest way to get started is to start the built-in PHP server in the root directory of your project:
+1. Get inside be container `docker exec -it product bash`
+2. Run `composer install`
+3. Import database (adminer, phpmyadmin, ...) from `app/product.sql`
 
-	php -S localhost:8000 -t www
 
-Then visit `http://localhost:8000` in your browser to see the welcome page.
 
-For Apache or Nginx, setup a virtual host to point to the `www/` directory of the project and you
-should be ready to go.
+Testing
+----------------
 
-**It is CRITICAL that whole `app/`, `config/`, `log/` and `temp/` directories are not accessible directly
-via a web browser. See [security warning](https://nette.org/security-warning).**
+PHPStan - `composer phpstan`  
+ECS(easy-coding-standard) - `composer ecs` - dry run  
+ECS(easy-coding-standard) - `composer ecs-fix` - fix  
+
+Run test `composer test` requires test database.  
+Import database from `app/product_test.sql`
+
+
+Adminer
+----------------
+
+Visit http://localhost:9009  
+Server: mysql  
+User / pasword: root / root  
