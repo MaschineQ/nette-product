@@ -46,3 +46,8 @@ Adminer
 Visit http://localhost:9009  
 Server: mysql  
 User / pasword: root / root  
+
+Fronend and Backend
+----------------
+Fronend: http://localhost:8080
+Backend: http://localhost:8080/admin
