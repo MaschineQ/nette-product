@@ -3,5 +3,48 @@
 {/block}
 
 {block content}
+	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+		<div class="col">
+			<div class="card shadow-sm">
+				<div class="card-body bg-dark">
+					<h2 class="card-text text-light">Product</h2>
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="btn-group">
+							<a n:href="Product:default" class="btn btn-sm btn-outline-light">View</a>
+							<a n:href="Product:add" class="btn btn-sm btn-outline-light">Add</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
+		<div class="col">
+			<div class="card shadow-sm">
+				<div class="card-body bg-dark">
+					<h2 class="card-text text-light">Category</h2>
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="btn-group">
+							<a n:href="Category:default" class="btn btn-sm btn-outline-light">View</a>
+							<a n:href="Category:add" class="btn btn-sm btn-outline-light">Add</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="card shadow-sm">
+				<div class="card-body bg-dark">
+					<h2 class="card-text text-light">Tag</h2>
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="btn-group">
+							<a n:href="Tag:default" class="btn btn-sm btn-outline-light">View</a>
+							<a n:href="Tag:add" class="btn btn-sm btn-outline-light">Add</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
 {/block}
