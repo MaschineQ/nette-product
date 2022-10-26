@@ -12,6 +12,17 @@ services:
      volumes:
         - ./mysql:/var/lib/mysql
 
+  mysql2:
+    image: mariadb:10.8.3
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: product_test
+      MYSQL_USER: product_test
+      MYSQL_PASSWORD: product_test
+    volumes:
+      - ./mysql:/var/lib/mysql
+
   product-php:
     container_name: product
     build:
