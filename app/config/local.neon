@@ -6,6 +6,9 @@ database:
 	user: product
 	password: product
 
+session:
+	expiration: 14 days
+
 application:
         mapping:
             Front: App\FrontModule\Presenters\*Presenter
