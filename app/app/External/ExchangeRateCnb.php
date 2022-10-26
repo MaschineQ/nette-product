@@ -19,7 +19,7 @@ class ExchangeRateCnb
 	{
 		$actualDay = new DateTime();
 		$url = 'https://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/denni_kurz.txt?date=' . $actualDay->format('d.m.Y');
-		bdump($url);
+
 		/** @var string $data */
 		$data = file_get_contents($url);
 
