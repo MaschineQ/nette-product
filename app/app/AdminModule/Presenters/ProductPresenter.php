@@ -83,7 +83,7 @@ final class ProductPresenter extends BasePresenter
 		try {
 			$this->exchangeRateCnb->insertExchangeRate();
 			$this->flashMessage('The exchange rate has been loaded.', 'success');
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			$this->flashMessage('The exchange rate has not been loaded.', 'danger');
 		}
 		$this->redirect('default');
