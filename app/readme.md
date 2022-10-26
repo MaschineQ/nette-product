@@ -49,5 +49,5 @@ User / pasword: root / root
 
 Fronend and Backend
 ----------------
-Fronend: http://localhost:8080
+Fronend: http://localhost:8080  
 Backend: http://localhost:8080/admin
