@@ -1,0 +1,14 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=mysql;dbname=product_test'
+	user: product_test
+	password: product_test
+
+application:
+        mapping:
+            Front: App\FrontModule\Presenters\*Presenter
+            Admin: App\AdminModule\Presenters\*Presenter
+            Error: App\Presenters\*Presenter
+            *: App\*Module\Presenters\*Presenter

@@ -52,6 +52,7 @@
 	"scripts": {
 		"phpstan": "vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=-1",
 		"ecs": "vendor/nette/coding-standard/ecs check app",
-		"ecs-fix": "vendor/nette/coding-standard/ecs fix app"
+		"ecs-fix": "vendor/nette/coding-standard/ecs fix app",
+		"test": "vendor/bin/tester -s -c /usr/local/etc/php/conf.d/docker-php-ext-pdo_mysql.ini tests"
 	}
 }

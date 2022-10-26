@@ -1,3 +1,4 @@
 .idea/
 /docker/mysql/
 /app/vendor/
+/app/tests/temp/cache/
