@@ -15,8 +15,13 @@ class CategoryPresenterTest extends Tester\TestCase
 	) {
 	}
 
+    public function setUp()
+    {
+        $user = $this->container->getByType(\Nette\Security\User::class);
+        $user->login('admin', 'admin');
+    }
 
-	public function testGetCategories(): void
+    public function testGetCategories(): void
 	{
 		$presenterFactory = $this->container->getByType('Nette\Application\IPresenterFactory');
 		$presenter = $presenterFactory->createPresenter('Admin:Category');
