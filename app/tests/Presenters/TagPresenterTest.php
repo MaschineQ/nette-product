@@ -15,11 +15,13 @@ class TagPresenterTest extends Tester\TestCase
 	) {
 	}
 
-    public function setUp()
-    {
-        $user = $this->container->getByType(\Nette\Security\User::class);
-        $user->login('admin', 'admin');
-    }
+
+	public function setUp()
+	{
+		$user = $this->container->getByType(Nette\Security\User::class);
+		$user->login('admin', 'admin');
+	}
+
 
 	public function testGetTags(): void
 	{
