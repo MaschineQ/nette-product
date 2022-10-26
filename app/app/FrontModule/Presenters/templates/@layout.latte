@@ -38,13 +38,18 @@
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-	<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" n:href="Homepage:default">DMQ dashboard</a>
+	<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" n:href="Homepage:default">DMQ</a>
 	<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
+	<div class="w-100"></div>
 	<div class="navbar-nav">
 		<div class="nav-item text-nowrap">
-			<a class="nav-link px-3" href="#">Sign out</a>
+			{if $user->isLoggedIn()}
+			<a class="nav-link px-3" n:href=":Admin:Sign:out">Sign out</a>
+			{else}
+			<a class="nav-link px-3" n:href=":Admin:Sign:in">Sign in</a>
+			{/if}
 		</div>
 	</div>
 </header>
@@ -57,7 +62,7 @@
 					<li class="nav-item">
 						<a n:class="nav-link, $presenter->isLinkCurrent('Homepage:default') ? active" aria-current="page" n:href="Homepage:default">
 							<span data-feather="home"></span>
-							Dashboard
+							Home
 						</a>
 					</li>
 					<li class="nav-item">
@@ -79,6 +84,11 @@
 						</a>
 					</li>
 				</ul>
+				<div class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">
+					<a class="btn btn-dark" n:href=":Admin:Homepage:default">
+						Show Dashboard
+					</a>
+				</div>
 			</div>
 		</nav>
 
@@ -98,6 +108,5 @@
 <script src="{$basePath}/js/bootstrap.bundle.min.js"></script>
 <script src="{$basePath}/js/feather.min.js"></script>
 <script src="{$basePath}/js/dashboard.js"></script>
-<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
 </body>
 </html>

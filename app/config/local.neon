@@ -12,3 +12,7 @@ application:
             Admin: App\AdminModule\Presenters\*Presenter
             Error: App\Presenters\*Presenter
             *: App\*Module\Presenters\*Presenter
+
+security:
+	users:
+		admin: admin

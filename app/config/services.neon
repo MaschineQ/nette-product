@@ -11,6 +11,7 @@ services:
 	- App\AdminModule\Form\TagFormFactory
 	- App\AdminModule\Model\TagManager
 	- App\AdminModule\Model\ProductTagManager
+	- App\AdminModule\Form\SignInFormFactory
 
 	# Front
 	- App\FrontModule\Model\ProductManager

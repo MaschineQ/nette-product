@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="cs">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="DMQ">
+	<title>{ifset title}{include title|stripHtml} | {/ifset}DMQ</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="{$basePath}/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="icon" href="{$basePath}/favicon.ico">
+	<meta name="theme-color" content="#7952b3">
+
+	<!-- Custom styles for this template -->
+	<link href="{$basePath}/css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+	<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" n:href="Homepage:default">DMQ dashboard</a>
+	<button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="w-100"></div>
+</header>
+
+<div class="container-fluid">
+	<div class="row justify-content-center mt-5">
+		<div class="col-md-4">
+			<div n:foreach="$flashes as $flash" n:class="p-2, mb-2, rounded, flash, $flash->type">{$flash->message}</div>
+			<h1>Login</h1>
+			{block content}
+		</div>
+	</div>
+</div>
+
+
+<script src="{$basePath}/js/bootstrap.bundle.min.js"></script>
+<script src="{$basePath}/js/feather.min.js"></script>
+<script src="{$basePath}/js/dashboard.js"></script>
+<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+</body>
+</html>
